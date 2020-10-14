@@ -41,7 +41,7 @@ fun Application.module(testing: Boolean = false) {
     data class KotlinEvent(val name: String, val video: String = "", val slides: String = "")
 
     val client = HttpClient(Apache) {}
-    val eventListDay1 = mutableListOf<KotlinEvent>(
+    val eventListDay1 = mutableListOf(
         KotlinEvent(
             "Opening Keynote",
             "https://youtu.be/pD58Dw17CLk",
@@ -72,7 +72,7 @@ fun Application.module(testing: Boolean = false) {
             "https://www.youtube.com/watch?v=xJawa3C6pss&feature=youtu.be&t=11059",
         )
     )
-    val eventListDay2 = mutableListOf<KotlinEvent>(
+    val eventListDay2 = mutableListOf(
         KotlinEvent(
             "Coroutines Update",
             "https://youtu.be/E5bje5HgKs0",
@@ -120,9 +120,6 @@ fun Application.module(testing: Boolean = false) {
         }
 
         get("/schedule") {
-
-            val href = Placeholder<HtmlBlockTag>()
-
             call.respondHtml(status = HttpStatusCode.OK) {
                 body {
 
@@ -131,7 +128,7 @@ fun Application.module(testing: Boolean = false) {
                         for (event in eventListDay1) {
                             li { +event.name }
                             ol {
-                                unsafe { +"<a href='${event.video}'>video</a> " };
+                                unsafe { +"<a href='${event.video}'>video</a> " }
                                 if (event.slides != "") unsafe {
                                     +" || <a href ='${event.slides}'> slides </a>"
                                 }
@@ -144,7 +141,7 @@ fun Application.module(testing: Boolean = false) {
                         for (event in eventListDay2) {
                             li { +event.name }
                             ol {
-                                unsafe { +"<a href='${event.video}'>video</a> " };
+                                unsafe { +"<a href='${event.video}'>video</a> " }
                                 if (event.slides != "") unsafe {
                                     +" || <a href ='${event.slides}'> slides </a>"
                                 }
